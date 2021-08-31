@@ -27,8 +27,8 @@ public class ExecInternal {
         } catch (final Exception ex) {
             throw new ExecutionException(ex);
         } finally {
-            Exec.setThreadLocalSession(null);
-            ExecInternal.sessionInternal.set(null);
+            Exec.removeThreadLocalSession();
+            ExecInternal.sessionInternal.remove();
         }
     }
 

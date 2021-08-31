@@ -50,6 +50,10 @@ public class Exec {
         Exec.session.set(session);
     }
 
+    static void removeThreadLocalSession() {
+        Exec.session.remove();
+    }
+
     /**
      * Returns the registered {@link ExecSession} instance.
      *

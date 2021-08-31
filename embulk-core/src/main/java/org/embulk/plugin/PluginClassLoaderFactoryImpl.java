@@ -10,7 +10,6 @@ public class PluginClassLoaderFactoryImpl implements PluginClassLoaderFactory {
             final Collection<String> parentFirstResources) {
         this.parentFirstPackages = parentFirstPackages;
         this.parentFirstResources = parentFirstResources;
-        this.createdPluginClassLoaders = new ArrayList<>();
     }
 
     public static PluginClassLoaderFactoryImpl of(
@@ -26,7 +25,6 @@ public class PluginClassLoaderFactoryImpl implements PluginClassLoaderFactory {
                 urls,
                 parentFirstPackages,
                 parentFirstResources);
-        this.createdPluginClassLoaders.add(created);
         return created;
     }
 
@@ -37,7 +35,6 @@ public class PluginClassLoaderFactoryImpl implements PluginClassLoaderFactory {
                 selfContainedPluginName,
                 this.parentFirstPackages,
                 this.parentFirstResources);
-        this.createdPluginClassLoaders.add(created);
         return created;
     }
 
@@ -49,12 +46,8 @@ public class PluginClassLoaderFactoryImpl implements PluginClassLoaderFactory {
             pluginClassLoader.close();
         }
         */
-        this.createdPluginClassLoaders.clear();
     }
 
     private final Collection<String> parentFirstPackages;
     private final Collection<String> parentFirstResources;
-
-    // Created PluginClassLoaders are maintained in the list so that they are not garbage-collected accidentally.
-    private final ArrayList<PluginClassLoader> createdPluginClassLoaders;
 }
